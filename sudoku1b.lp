@@ -6,6 +6,18 @@
 
 % Your implementation please...
 
+1 { sudoku(X,Y,N)  : N=1..4 } 1 :- X=1..4, Y=1..4.
+% achieved: every cell contains exactly one number between 1 and 4
+
+sudoku(X,Y,N) :- initial(X,Y,N).
+% achieved: sudoku cell has value N if that value was given as initial clue.
+
+:- sudoku(X,Y1,N), sudoku(X,Y2,N), Y1 != Y2.
+% achieved: don't allow duplicate numbers within a row.
+
+:- sudoku(X1,Y,N), sudoku(X2,Y,N), X1 != X2.
+% achieved: don't allow duplicate numbers within a column.
+
 subgrid(X,Y,G) :-
     X=1..4,
     Y=1..4,
